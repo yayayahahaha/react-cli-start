@@ -1,10 +1,12 @@
+import { v4 } from 'uuid'
+
 const colorData = [...Array(3)]
   .map((n, index) => {
 
     const colorCode = `${_randomColor()}`
 
     return {
-      id: `${index}-${String(Date.now()).slice(-4)}`,
+      id: `${v4()}`,
       title: `color is ${colorCode}`,
       color: `${colorCode}`,
       rating: _doRandom(6)

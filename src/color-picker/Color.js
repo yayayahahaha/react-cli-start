@@ -14,6 +14,7 @@ function Color(props) {
   return (
     <section>
       <h1>{title}</h1>
+      <p>section id: <b>{id}</b></p>
       <p>current rate: {rating}</p>
       <button onClick={ () => onRemove(id) }>
         <FaTrash />
