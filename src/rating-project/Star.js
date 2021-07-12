@@ -7,12 +7,10 @@ const Star = (props) => {
   } = props
 
   return (
-    <>
-      <FaStar
-        color={selected ? 'red' : 'grey'}
-        onClick={onSelect}
-      />
-    </>
+    <FaStar
+      color={selected ? 'red' : 'grey'}
+      onClick={onSelect}
+    />
   )
 }
 

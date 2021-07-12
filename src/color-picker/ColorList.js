@@ -1,14 +1,14 @@
 import Color from './Color.js'
+import { useColors } from '../provider/ColorProvider.js'
 
 function ColorList(props) {
   const {
-    colors = [],
-    onRemoveColor = Function.prototype,
-    onRateChanged = Function.prototype
-  } = props
+    colors,
+    rateColor: onRateChanged = Function.prototype,
+    removeColor: onRemoveColor = Function.prototype
+  } = useColors()
 
   if (!colors.length) return (<div>There's no color!</div>)
-
   return (
     <>
       {colors.map((color, index) =>

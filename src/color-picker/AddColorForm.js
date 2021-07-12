@@ -1,20 +1,20 @@
 import { useInput } from '../customHook/hooks'
+import { useColors } from '../provider/ColorProvider.js'
 
 function AddColorForm(props) {
   const {
-    onNewColor = Function.prototype,
-    defaultColor = '#FF0063'
-  } = props
+    addColor = Function.prototype
+  } = useColors()
 
   const [titleProps, resetTitle] = useInput('')
-  const [colorProps, resetColor] = useInput(defaultColor)
+  const [colorProps, resetColor] = useInput('#FF0063')
 
   const submit = function(e) {
     e.preventDefault()
     const { value: title } = titleProps
     const { value: color } = colorProps
 
-    onNewColor({ title, color })
+    addColor({ title, color })
     resetTitle()
     resetColor()
   }
@@ -24,7 +24,6 @@ function AddColorForm(props) {
       <input
         type="text"
         placeholder="color title..."
-
         {...titleProps}
       />
       <input
