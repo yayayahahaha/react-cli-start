@@ -27,9 +27,14 @@ function App() {
   );
 
   function onNewColor({ title, color }) {
-    console.log(`id: ${v4()}`)
-    console.log(`title: ${title}`)
-    console.log(`color: ${color}`)
+    const id = v4()
+    const rating = 0
+
+    const newColors = [
+      ...colors,
+      { id, title, color, rating}
+    ]
+    setColors(newColors)
   }
 
   function onRateChanged(id, rating) {
