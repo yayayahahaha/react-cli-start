@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useInput } from '../customHook/hooks'
 
 function AddColorForm(props) {
   const {
@@ -6,15 +6,17 @@ function AddColorForm(props) {
     defaultColor = '#FF0063'
   } = props
 
-  const [title, setTitle] = useState('')
-  const [color, setColor] = useState(defaultColor)
+  const [titleProps, resetTitle] = useInput('')
+  const [colorProps, resetColor] = useInput(defaultColor)
 
   const submit = function(e) {
     e.preventDefault()
+    const { value: title } = titleProps
+    const { value: color } = colorProps
 
     onNewColor({ title, color })
-    setTitle('')
-    setColor(defaultColor)
+    resetTitle()
+    resetColor()
   }
 
   return (
@@ -22,13 +24,12 @@ function AddColorForm(props) {
       <input
         type="text"
         placeholder="color title..."
-        value={title}
-        onChange={ e => setTitle(e.target.value) }
+
+        {...titleProps}
       />
       <input
         type="color"
-        value={color}
-        onChange={ e => setColor(e.target.value) }
+        {...colorProps}
       />
       <button>Add Color</button>
     </form>
