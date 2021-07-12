@@ -6,9 +6,14 @@ const Star = (props) => {
     onSelect = Function.prototype
   } = props
 
-  console.count('here')
-
-  return (<FaStar color={selected ? 'red' : 'grey'} onClick={onSelect} />)
+  return (
+    <>
+      <FaStar
+        color={selected ? 'red' : 'grey'}
+        onClick={onSelect}
+      />
+    </>
+  )
 }
 
 export default Star
