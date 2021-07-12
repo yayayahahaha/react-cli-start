@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <AddColorForm
-
+        onNewColor={ onNewColor }
       />
 
       <ColorList
@@ -23,6 +23,11 @@ function App() {
       />
     </div>
   );
+
+  function onNewColor({ title, color }) {
+    console.log(`title: ${title}`)
+    console.log(`color: ${color}`)
+  }
 
   function onRateChanged(id, rating) {
     const newColors = colors.map(color => color.id === id ? { ...color, rating } : color)
