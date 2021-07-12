@@ -7,8 +7,7 @@ function Color(props) {
     title = '',
     color = 'rbg(255, 0, 99)',
     rating = 0,
-    onRemove = Function.prototype,
-    onRateChanged = Function.prototype
+    onRemove = Function.prototype
   } = props
 
   return (
@@ -23,7 +22,7 @@ function Color(props) {
 
       <StarRating
         selectedStars={rating}
-        onRateChanged={ (newRate) => onRateChanged(id, newRate) }
+        id={id}
       />
     </section>
   )

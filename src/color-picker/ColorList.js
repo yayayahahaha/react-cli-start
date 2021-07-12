@@ -4,7 +4,6 @@ import { useColors } from '../provider/ColorProvider.js'
 function ColorList(props) {
   const {
     colors,
-    rateColor: onRateChanged = Function.prototype,
     removeColor: onRemoveColor = Function.prototype
   } = useColors()
 
@@ -16,7 +15,6 @@ function ColorList(props) {
           key={color.id}
           { ...color }
           onRemove={ onRemoveColor }
-          onRateChanged={ onRateChanged }
         />)
       }
     </>

@@ -1,17 +1,16 @@
 import Star from './Star.js'
-// import { useState } from 'react'
+import { useColors } from '../provider/ColorProvider'
 
 function StarRating(props) {
   const {
+    id = '',
     totalStars = 5,
     style = {},
     selectedStars = 0,
-    onRateChanged = Function.prototype,
     ...restProps
   } = props
 
-  // useState: 第一個變數是會被監聽的值? 第二個是用來修改他的function
-  // const [selectedStars, setSelectedStars] = useState(defaultSeletedStars)
+  const { rateColor: onRateChanged } = useColors()
 
   return (
     <div style={{ padding: '5px', ...style }} {...restProps}>
@@ -19,7 +18,7 @@ function StarRating(props) {
         <Star
           key={index}
           selected={ selectedStars > index }
-          onSelect={ () => onRateChanged(index + 1) }
+          onSelect={ () => onRateChanged(id, index + 1) }
         />
       )}
       <p>
