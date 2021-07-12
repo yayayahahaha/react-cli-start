@@ -1,14 +1,18 @@
 // import logo from './logo.svg';
+import { useState } from 'react'
 import './App.css';
-import StarRating from './rating-project/StarRating.js'
+
+// color-picker
+import colorData from './color-picker/color-data.js'
+import ColorList from './color-picker/ColorList.js'
 
 function App() {
+  const [colors] = useState(colorData)
+
   return (
     <div className="App">
-      <StarRating
-        totalStars={6}
-        style={ { backgroundColor: 'lightblue' } }
-        onDoubleClick={ () => console.log('onDoubleClick!', this) }
+      <ColorList
+        colors={colors}
       />
     </div>
   );
