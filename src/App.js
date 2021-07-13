@@ -7,14 +7,21 @@ import AddColorForm from './color-picker/AddColorForm.js'
 
 import ColorProvider from './provider/ColorProvider.js'
 
+import Checkbox from './components/Checkbox.js'
 function App() {
   return (
-    <ColorProvider>
-      <div className="App">
-        <AddColorForm />
-        <ColorList />
+    <>
+      <div>
+        <Checkbox />
       </div>
-    </ColorProvider>
+
+      <ColorProvider>
+        <div className="App">
+          <AddColorForm />
+          <ColorList />
+        </div>
+      </ColorProvider>
+    </>
   )
 }
 
