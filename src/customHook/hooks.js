@@ -1,4 +1,4 @@
-import { useState, useLayoutEffect } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef } from 'react'
 
 export const useInput = (originalValue) => {
   const [value, setValue] = useState(originalValue)
@@ -47,4 +47,14 @@ export const useMousePosition = () => {
   }, [])
 
   return [x, y]
+}
+
+// 取得useState的值的前一個數值:
+// 透過ref 在update 的時候的恆定性與執行順序上實作出來的customHooks
+export const usePrevious = (value) => {
+  const ref = useRef()
+  useEffect(() => {
+    ref.current = value
+  })
+  return ref.current
 }

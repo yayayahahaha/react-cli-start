@@ -8,13 +8,17 @@ import AddColorForm from './color-picker/AddColorForm.js'
 import ColorProvider from './provider/ColorProvider.js'
 
 import Checkbox from './components/Checkbox.js'
+import Counter from './components/Counter'
+
 function App() {
   return (
     <>
+      <Counter />
+      <hr />
       <div>
         <Checkbox />
       </div>
-
+      <hr />
       <ColorProvider>
         <div className="App">
           <AddColorForm />
