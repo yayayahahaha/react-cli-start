@@ -70,6 +70,7 @@ export const usePrevious = (value) => {
   return ref.current
 }
 
+// 請求用的useFetch hook, 處理好了success, loading 和error
 export const useFetch = (url) => {
   const [data, setData] = useState(null)
   const [error/*, setError*/] = useState(null)
@@ -88,4 +89,26 @@ export const useFetch = (url) => {
   }, [url])
 
   return { data, error, loading }
+}
+
+// 輪詢
+export const useIterator = (props) => {
+  const { items = [], initialindex = 0 } = props
+
+  const [i, setIndex] = useState(initialindex)
+  const lastIndex = items.length - 1
+
+  const prev = useMemo(() => {
+      let destination = i - 1
+      if (i === 0) destination = lastIndex
+        setIndex(destination)
+    }, [i, lastIndex])
+  const next = useMemo(() => {
+      let destination = i + 1
+      if (i === lastIndex) destination = 0
+        setIndex(destination)
+    }, [i, lastIndex])
+  const item = useMemo(f => items[i], [i, items])
+
+  return [item, prev, next]
 }
