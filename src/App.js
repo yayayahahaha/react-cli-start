@@ -7,6 +7,7 @@ import AddColorForm from './color-picker/AddColorForm.js'
 
 import ColorProvider from './provider/ColorProvider.js'
 
+import ReduceCounter from './components/ReduceCounter'
 import CatList from './components/CatList'
 import Checkbox from './components/Checkbox.js'
 import Counter from './components/Counter'
@@ -14,6 +15,8 @@ import Counter from './components/Counter'
 function App() {
   return (
     <>
+      <ReduceCounter />
+      <hr />
       <CatList />
       <hr />
       <Counter />
