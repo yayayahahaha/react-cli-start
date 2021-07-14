@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect, useRef } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react'
 
 export const useInput = (originalValue) => {
   const [value, setValue] = useState(originalValue)
@@ -51,6 +51,17 @@ export const useMousePosition = () => {
 
 // 取得useState的值的前一個數值:
 // 透過ref 在update 的時候的恆定性與執行順序上實作出來的customHooks
+// https://www.codebeast.dev/react-memoize-hooks-useRef-useCallback-useMemo/
+export const usePrevious_useMemo = (value) => {
+  const ref = useMemo(() => ({ previous: null }), []
+    )
+
+  // const ref = useRef()
+  useEffect(() => {
+    ref.previous = value
+  })
+  return ref.previous
+}
 export const usePrevious = (value) => {
   const ref = useRef()
   useEffect(() => {
