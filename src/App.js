@@ -12,9 +12,15 @@ import CatList from './components/CatList'
 import Checkbox from './components/Checkbox.js'
 import Counter from './components/Counter'
 
+import UserList from './user-list/UserList'
+
 function App() {
+  const demoUserList = true
+
   return (
-    <>
+    demoUserList
+    ? <UserList />
+    : <>
       <ReduceCounter />
       <hr />
       <CatList />
