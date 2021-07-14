@@ -1,6 +1,6 @@
 function GithubUserDetail(props) {
   const { avatar_url, login, name, location } = props
-  console.log(JSON.stringify(props, null, 2))
+  // console.log(JSON.stringify(props, null, 2))
 
   return (
     <div>

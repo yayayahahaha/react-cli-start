@@ -14,6 +14,7 @@ import Counter from './components/Counter'
 
 import UserList from './user-list/UserList'
 import GithubUser from './components/GithubUser'
+import UserRepositories from './components/UserRepositories'
 
 function App() {
   // const demo = 'user-list'
@@ -21,9 +22,14 @@ function App() {
 
   switch (demo) {
     case 'user-list':
-      return <UserList />
+      return <>
+        <UserList />
+      </>
     case 'github-user':
-      return <GithubUser login="yayayahahaha" />
+      return <>
+        <UserRepositories />
+        <GithubUser login="yayayahahaha" />
+      </>
     default:
       return (
         <>

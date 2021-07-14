@@ -3,7 +3,7 @@ import { useFetch } from '../customHook/hooks'
 function Fetch(props) {
   const {
     url = null,
-    renderSuccess,
+    renderSuccess = data => <pre>{JSON.stringify(data, null, 2)}</pre>,
     renderLoading = f => <p>Now Loading~!</p>,
     renderError = e => <pre>{JSON.stringify(e, null, 2)}</pre>
   } = props

@@ -1,4 +1,5 @@
-import { useState, useEffect, useLayoutEffect, useRef, useMemo } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef, useMemo, useCallback } from 'react'
+import faker from 'faker'
 
 export const useInput = (originalValue) => {
   const [value, setValue] = useState(originalValue)
@@ -78,6 +79,11 @@ export const useFetch = (url) => {
 
   useEffect(() => {
     (async() => {
+      if (true) {
+        setData([...Array(30)].map(() => ({name: faker.name.findName()})))
+        return
+      }
+
       if (typeof url !== 'string') return
       await setLoading(true)
 
@@ -92,23 +98,23 @@ export const useFetch = (url) => {
 }
 
 // 輪詢
-export const useIterator = (props) => {
-  const { items = [], initialindex = 0 } = props
+export const useIterator = (...allProps) => {
+  const [items = [], initialindex = 0] = allProps
 
   const [i, setIndex] = useState(initialindex)
   const lastIndex = items.length - 1
 
-  const prev = useMemo(() => {
+  const prev = useCallback(() => {
       let destination = i - 1
       if (i === 0) destination = lastIndex
         setIndex(destination)
     }, [i, lastIndex])
-  const next = useMemo(() => {
+  const next = useCallback(() => {
       let destination = i + 1
       if (i === lastIndex) destination = 0
         setIndex(destination)
     }, [i, lastIndex])
   const item = useMemo(f => items[i], [i, items])
 
-  return [item, prev, next]
+  return [{...item, currentIndex: i}, prev, next]
 }
