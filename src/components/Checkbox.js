@@ -9,11 +9,11 @@ function Checkbox() {
   }, [checked, list])
 
   useEffect(() => {
-    console.log(`checked: ${checked}`)
+    // console.log(`checked: ${checked}`)
   }, [checked])
 
   useEffect(() => {
-    console.log(`staticList: ${JSON.stringify(staticList, null, 2)}`)
+    // console.log(`staticList: ${JSON.stringify(staticList, null, 2)}`)
   }, [staticList])
 
   const pushToList = () => setList(list => [...list, checked])
