@@ -1,18 +1,14 @@
-import { useFetch } from '../customHook/hooks'
+import Fetch from './Fetch'
+import GithubUserDetail from './GithubUserDetail'
 
 function GithubUser(props) {
   const { login } = props
-  const url = `https://api.github.com/users/${login}`
-  const { loading, data, error } = useFetch(url)
 
-  if (loading) return <div>loading...</div>
-  if (error) return <div style={{ color: 'red' }}>error~!</div>
-  if (!data) return <div>Initing...</div>
+  const url = `https://api.github.com/users/${login}`
+  const renderSuccess = GithubUserDetail
 
   return (
-    <div className="githubUser">
-      {data.login}
-    </div>
+    <Fetch {...{url, renderSuccess}}></Fetch>
   )
 }
 

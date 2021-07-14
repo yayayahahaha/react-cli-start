@@ -23,7 +23,7 @@ function App() {
     case 'user-list':
       return <UserList />
     case 'github-user':
-      return <GithubUser login="flyc" />
+      return <GithubUser login="yayayahahaha" />
     default:
       return (
         <>
