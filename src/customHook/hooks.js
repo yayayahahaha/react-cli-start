@@ -69,3 +69,23 @@ export const usePrevious = (value) => {
   })
   return ref.current
 }
+
+export const useFetch = (url) => {
+  const [data, setData] = useState(null)
+  const [error/*, setError*/] = useState(null)
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    (async() => {
+      if (typeof url !== 'string') return
+      await setLoading(true)
+
+      // await (() => new Promise(r => setTimeout(r, 3000)))() // simulate slow fetching
+      const data = await (await fetch(url)).json()
+      await setData(data)
+      await setLoading(false)
+    })()
+  }, [url])
+
+  return { data, error, loading }
+}

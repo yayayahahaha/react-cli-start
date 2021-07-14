@@ -13,32 +13,39 @@ import Checkbox from './components/Checkbox.js'
 import Counter from './components/Counter'
 
 import UserList from './user-list/UserList'
+import GithubUser from './components/GithubUser'
 
 function App() {
-  const demoUserList = true
+  // const demo = 'user-list'
+  const demo = 'github-user'
 
-  return (
-    demoUserList
-    ? <UserList />
-    : <>
-      <ReduceCounter />
-      <hr />
-      <CatList />
-      <hr />
-      <Counter />
-      <hr />
-      <div>
-        <Checkbox />
-      </div>
-      <hr />
-      <ColorProvider>
-        <div className="App">
-          <AddColorForm />
-          <ColorList />
-        </div>
-      </ColorProvider>
-    </>
-  )
+  switch (demo) {
+    case 'user-list':
+      return <UserList />
+    case 'github-user':
+      return <GithubUser login="flyc" />
+    default:
+      return (
+        <>
+          <ReduceCounter />
+          <hr />
+          <CatList />
+          <hr />
+          <Counter />
+          <hr />
+          <div>
+            <Checkbox />
+          </div>
+          <hr />
+          <ColorProvider>
+            <div className="App">
+              <AddColorForm />
+              <ColorList />
+            </div>
+          </ColorProvider>
+        </>
+      )
+  }
 }
 
 export default App;
