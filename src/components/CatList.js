@@ -2,6 +2,7 @@ import Cat from './Cat'
 import { useState, memo } from 'react'
 import { v4 } from 'uuid'
 
+const style = { width: 'auto', height: '200px' }
 const teamRwby = [
   { name: 'ruby', image: 'http://puu.sh/oXDLO/7b5a932ef1.jpg'},
   { name: 'weiss', image: 'http://puu.sh/oXDNd/169a74d36c.jpg'},
@@ -19,7 +20,7 @@ function CatList() {
   return (
     <>
       <button onClick={newCat}>add new cat</button>
-      {list.map(cat => <PureCat {...cat} key={cat.name} />)}
+      {list.map(cat => <PureCat {...cat} key={cat.name} style={style} />)}
     </>
   )
 }

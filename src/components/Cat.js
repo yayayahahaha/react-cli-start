@@ -1,10 +1,11 @@
-import { memo } from 'react'
-
 function Cat(props) {
-  const { name } = props
+  const { name, image, style: imageStyle } = props
   console.log(`rendering ${name}`)
   return (
-    <p>my name is {name}</p>
+    <>
+      <p>my name is {name}</p>
+      {image ? <img src={image} alt={name} style={imageStyle} /> : <span>no image!</span>}
+    </>
   )
 }
 
