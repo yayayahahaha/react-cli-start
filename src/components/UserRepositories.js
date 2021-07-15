@@ -8,8 +8,12 @@ function UserRepositories(props) {
     onSelect = f => f
   } = props
   const url = `https://api.github.com/users/${login}/repos`
-  const renderSuccess = data => <RepoMenu repositories={data} onSelect={onSelect} login={login} />
-  // const renderSuccess = data => <>{data.map(item => <p key={item.id}>{item.name}</p> )}</>
+  const renderSuccess = data => <RepoMenu
+    repositories={data}
+    onSelect={onSelect}
+    login={login}
+    selectedRepo={selectedRepo}
+  />
   const renderLoading = f => <div>Loading for UserRepositories</div>
 
   const fetchProps = { url, renderSuccess, renderLoading }

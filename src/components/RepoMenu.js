@@ -3,9 +3,14 @@ import { useEffect } from 'react'
 import RepositoryReadme from './RepositoryReadme'
 
 function RepoMenu(props) {
-  const { repositories = [], login, onSelect = Function.prototype } = props
+  const {
+    repositories = [],
+    login,
+    onSelect = Function.prototype,
+    selectedRepo = 0
+  } = props
 
-  const [item, pre, next] = useIterator(repositories, 0)
+  const [item, pre, next] = useIterator(repositories, selectedRepo)
   const { name, currentIndex: index } = item
 
   useEffect(() => {
