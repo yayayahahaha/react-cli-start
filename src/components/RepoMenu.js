@@ -1,11 +1,9 @@
 import { useIterator } from '../customHook/hooks'
 import { useEffect } from 'react'
-import RepositoryReadme from './RepositoryReadme'
 
 function RepoMenu(props) {
   const {
     repositories = [],
-    login,
     onSelect = Function.prototype,
     selectedRepo = 0
   } = props
@@ -23,7 +21,6 @@ function RepoMenu(props) {
       <p>{index} - {name}</p>
       <button onClick={pre}>pre</button>
       <button onClick={next}>next</button>
-      <RepositoryReadme {...{login, repo: name}} />
     </div>
   )
 }
