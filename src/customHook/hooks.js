@@ -79,7 +79,8 @@ export const useFetch = (url) => {
 
   useEffect(() => {
     (async() => {
-      if (true) {
+      if (false) {
+        // test data
         setData([...Array(30)].map(() => ({name: faker.name.findName()})))
         return
       }
