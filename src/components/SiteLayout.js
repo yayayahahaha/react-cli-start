@@ -1,12 +1,12 @@
 function SiteLayout(props) {
   const {
     children = <div>default children</div>,
-    menu = null
+    menu: Menu = <p>default Menu Component</p>
   } = props
 
   return (
     <div className="site-container">
-      <div>{menu}</div>
+      <div>{Menu}</div>
       <div>{children}</div>
     </div>
   )

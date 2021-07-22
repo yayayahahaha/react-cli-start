@@ -14,7 +14,7 @@ import Counter from './components/Counter'
 
 import UserList from './user-list/UserList'
 import GithubUser from './components/GithubUser'
-import Suspense from './components/Suspense'
+import SuspenseTest from './components/SuspenseTest'
 
 function App() {
   // const demo = 'user-list'
@@ -23,7 +23,7 @@ function App() {
   switch (demo) {
     case 'suspense':
       return <>
-        <Suspense />
+        <SuspenseTest />
       </>
     case 'user-list':
       return <>
