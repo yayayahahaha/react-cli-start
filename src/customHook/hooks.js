@@ -74,24 +74,32 @@ export const usePrevious = (value) => {
 // 請求用的useFetch hook, 處理好了success, loading 和error
 export const useFetch = (url) => {
   const [data, setData] = useState(null)
-  const [error/*, setError*/] = useState(null)
+  const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     (async() => {
+      if (!url) return setError({ message: 'NO URL!' })
+
       if (false) {
         // test data
         setData([...Array(30)].map(() => ({name: faker.name.findName()})))
         return
       }
+      setData(null)
+      setError(null)
 
       if (typeof url !== 'string') return
-      await setLoading(true)
+      setLoading(true)
 
-      // await (() => new Promise(r => setTimeout(r, 3000)))() // simulate slow fetching
-      const data = await (await fetch(url)).json()
-      await setData(data)
-      await setLoading(false)
+      // await (() => new Promise(r => setTimeout(r, 1000)))() // simulate slow fetching
+      const response = await fetch(url)
+      setLoading(false)
+      const fetchError = response.status !== 200 ? true : false
+
+      const data = await response.json()
+      if (fetchError) return void setError(data)
+      setData(data)
     })()
   }, [url])
 
@@ -118,4 +126,39 @@ export const useIterator = (...allProps) => {
   const item = useMemo(f => items[i], [i, items])
 
   return [{...item, currentIndex: i}, prev, next]
+}
+
+// trying!
+export const useFetchConfig = (key) => {
+  // const { key, login: defaultLogin } = props
+  const [login, setLogin] = useState('')
+  const [url, setUrl] = useState('')
+
+  const createUrl = useCallback(function(key) {
+    if (!login) return null
+    switch (key) {
+      case 'detail':
+        return `https://api.github.com/users/${login}`
+      case 'repositories':
+        return `https://api.github.com/users/${login}/repos`
+      default:
+        return null
+    }
+  }, [login])
+  const loginChanged = useCallback(function(login) {
+    if (!login) return
+    console.log('in loginChanged, ', login)
+    setLogin(login)
+    const url = createUrl(key)
+    setUrl(url)
+  }, [key, createUrl])
+
+  useEffect(() => {
+    console.log(`in useEffect: login: ${login}, key: ${key}, url: ${url}`)
+
+    if (!login) return
+    setUrl(createUrl(key))
+  }, [setUrl, createUrl, key, login, url])
+
+  return [url, loginChanged]
 }

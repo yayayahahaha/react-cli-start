@@ -26,7 +26,7 @@ function App() {
       </>
     case 'github-user':
       return <>
-        <GithubUser login="yayayahahaha" />
+        <GithubUser />
       </>
     default:
       return (
