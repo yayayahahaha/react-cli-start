@@ -14,12 +14,17 @@ import Counter from './components/Counter'
 
 import UserList from './user-list/UserList'
 import GithubUser from './components/GithubUser'
+import Suspense from './components/Suspense'
 
 function App() {
   // const demo = 'user-list'
-  const demo = 'github-user'
+  const demo = 'suspense'
 
   switch (demo) {
+    case 'suspense':
+      return <>
+        <Suspense />
+      </>
     case 'user-list':
       return <>
         <UserList />
