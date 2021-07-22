@@ -77,6 +77,8 @@ export const useFetch = (url) => {
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
+  const mountedChecker = useMountedRef()
+
   useEffect(() => {
     (async() => {
       if (!url) return setError({ message: 'NO URL!' })
@@ -92,8 +94,11 @@ export const useFetch = (url) => {
       if (typeof url !== 'string') return
       setLoading(true)
 
-      // await (() => new Promise(r => setTimeout(r, 1000)))() // simulate slow fetching
+      await (() => new Promise(r => setTimeout(r, 3000)))() // simulate slow fetching
       const response = await fetch(url)
+
+      if (!mountedChecker.current) return
+
       setLoading(false)
       const fetchError = response.status !== 200 ? true : false
 
@@ -101,7 +106,7 @@ export const useFetch = (url) => {
       if (fetchError) return void setError(data)
       setData(data)
     })()
-  }, [url])
+  }, [url, mountedChecker])
 
   return { data, error, loading }
 }
@@ -128,7 +133,7 @@ export const useIterator = (...allProps) => {
   return [{...item, currentIndex: i}, prev, next]
 }
 
-// trying!
+// trying! but it seems not that work as I thought...
 export const useFetchConfig = (key) => {
   // const { key, login: defaultLogin } = props
   const [login, setLogin] = useState('')
@@ -161,4 +166,21 @@ export const useFetchConfig = (key) => {
   }, [setUrl, createUrl, key, login, url])
 
   return [url, loginChanged]
+}
+
+// component mounted checked
+// 用法: 在執行promise 相關的事宜時，如果在settle 之前因為父層的值變動造成子component 消失
+// 導致React 無法將Promise 回傳的值綁定到畫面上的時候使用
+export const useMountedRef = () => {
+  // 利用 useRef 的特性讓該值不會每次都被刷掉
+  const mounted = useRef(false)
+
+  useEffect(() => {
+    // 如果 useEffect 的 depsArray 是空的，代表每次 re-render 都會執行
+    // 且，如果回傳一個 function 的話，會在component 從畫面上 unmounted 的時候執行該 function
+    mounted.current = true
+    return () => (mounted.current = false)
+  }, [])
+
+  return mounted
 }

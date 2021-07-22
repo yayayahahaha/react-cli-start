@@ -45,6 +45,7 @@ function GithubUser(props) {
     loginChanged_repositories(login)
   }, [login, loginChanged_detail, loginChanged_repositories])
 
+
   return (
     <>
       <SearchForm onSubmit={onSubmit} />
