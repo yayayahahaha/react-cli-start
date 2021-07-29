@@ -10,3 +10,35 @@ export const loadReadme = async(login, repo) => {
 
   return markdown
 }
+
+export const timesTwo = (value) => {
+  return value * 2
+}
+
+export const add = (a, b) => {
+  const aIsNumber = detectType(a) === 'number'
+  const bIsNumber = detectType(b) === 'number'
+  const aIsNaN = Number.isNaN(a)
+  const bIsNaN = Number.isNaN(b)
+
+  if (aIsNaN || bIsNaN) return NaN
+  if (!aIsNumber || !bIsNumber) return null
+
+  return a + b
+}
+
+export const detectType = value => {
+  // if (Promise.resolve() instanceof Promise) return 'promise'
+  // ['array', 'null', 'promise']
+  // ['string', 'number', 'boolean', 'function', 'object', 'undefined']
+  if (Object.prototype.toString.call(value) === '[object Promise]') return 'promise'
+  if (value === null) return 'null'
+  if (Array.isArray(value)) return 'array'
+  return typeof value
+}
+
+export const promiseExample = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve('hello'), 300)
+  })
+}
